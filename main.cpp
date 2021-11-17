@@ -14,16 +14,16 @@ int main(int argc, char **argv){
     int wrong = 0;
     for(j=0;j<strlen(argv[i]);j++){
       switch(argv[i][j]){
-        case '[': push(s,argv[i][j]); cout<<'['; break;
-        case '{': push(s,argv[i][j]); cout<<'{';break;
-        case ']': if(pop(s) != '['){ wrong = 1;} cout<<']'; break;
-        case '}': if(pop(s) != '{'){ wrong = 1;} cout<<'}'; break;
+        case '[': push(s,argv[i][j]); cout<<'['; wrong++;break;
+        case '{': push(s,argv[i][j]); cout<<'{'; wrong++;break;
+        case ']': if(pop(s) == '['){ wrong--;} cout<<']'; break;
+        case '}': if(pop(s) == '{'){ wrong--;} cout<<'}'; break;
         default: cout<<argv[i][j];
       }
     }
-    if(wrong == 1){
+    if(wrong != 0 ){
       printf(" is wrong\n");
-    }else if(wrong == 0){
+    }else{
       printf(" is correct\n");
     }
   }
